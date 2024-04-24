@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Text, useWindowDimensions, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import FontAwesomeIcon from '@react-native-vector-icons/fontawesome';
 
 import { AttachTourStep } from '../components/tour/AttachTourStep'
 import { useConfiguration } from '../contexts/configuration'
@@ -24,10 +25,10 @@ const TabStack: React.FC = () => {
   const { ColorPallet, TabTheme } = useTheme()
   const { fontScale } = useWindowDimensions()
 
-  const showLabels = fontScale * TabTheme.tabBarTextStyle.fontSize < 18
+  const showLabels = fontScale * TabTheme.tabBarTextStyle.fontSize < 16
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: ColorPallet.brand.primary }}>
+    <SafeAreaView style={{ flex: 1, }}>
       <Tab.Navigator
         screenOptions={{
           unmountOnBlur: true,
@@ -45,7 +46,7 @@ const TabStack: React.FC = () => {
           options={{
             tabBarIcon: ({ color, focused }) => (
               <View style={{ ...TabTheme.tabBarContainerStyle, justifyContent: showLabels ? 'flex-end' : 'center' }}>
-                <Icon name={focused ? 'home' : 'home-outline'} color={color} size={30} />
+                <Icon name={focused ? 'home-outline' : 'home-outline'} color={color} size={30} />
                 {showLabels && (
                   <Text
                     style={{
@@ -56,15 +57,44 @@ const TabStack: React.FC = () => {
                     {t('TabStack.Home')}
                   </Text>
                 )}
+                {focused && <View style={{position: "absolute", height: 3, bottom: -0.5, backgroundColor: TabTheme.tabBarActiveTintColor, width: '40%', borderRadius: 50, }} />}
               </View>
             ),
             tabBarShowLabel: false,
             tabBarBadge: total || undefined,
-            tabBarBadgeStyle: { backgroundColor: ColorPallet.semantic.error },
+            tabBarBadgeStyle: { backgroundColor: ColorPallet.semantic.success },
             tabBarAccessibilityLabel: `${t('TabStack.Home')} (${
               total === 1 ? t('Home.OneNotification') : t('Home.CountNotifications', { count: total || 0 })
             })`,
             tabBarTestID: testIdWithKey(t('TabStack.Home')),
+          }}
+        />
+        
+        <Tab.Screen
+          name={TabStacks.CredentialStack}
+          component={CredentialStack}
+          options={{
+            tabBarIcon: ({ color, focused }) => (
+              <AttachTourStep index={2}>
+                <View style={{ ...TabTheme.tabBarContainerStyle, justifyContent: showLabels ? 'flex-end' : 'center' }}>
+                  <Icon name={focused ? 'id-card' : 'id-card'} color={color} size={30} />
+                  {showLabels && (
+                    <Text
+                      style={{
+                        ...TabTheme.tabBarTextStyle,
+                        color: focused ? TabTheme.tabBarActiveTintColor : TabTheme.tabBarInactiveTintColor,
+                      }}
+                    >
+                      {t('TabStack.Credentials')}
+                    </Text>
+                  )}
+                  {focused && <View style={{position: "absolute", height: 3, bottom: -0.5, backgroundColor: TabTheme.tabBarActiveTintColor, width: '40%', borderRadius: 50, }} />}
+                </View>
+              </AttachTourStep>
+            ),
+            tabBarShowLabel: false,
+            tabBarAccessibilityLabel: t('TabStack.Credentials'),
+            tabBarTestID: testIdWithKey(t('TabStack.Credentials')),
           }}
         />
         <Tab.Screen
@@ -82,7 +112,7 @@ const TabStack: React.FC = () => {
                   <View
                     style={{
                       position: 'absolute',
-                      bottom: 0,
+                      bottom: -5,
                       width: 90,
                       minHeight: 90,
                       flexGrow: 1,
@@ -106,7 +136,7 @@ const TabStack: React.FC = () => {
                         marginTop: 5,
                       }}
                     >
-                      {t('TabStack.Scan')}
+                    
                     </Text>
                   </View>
                 </AttachTourStep>
@@ -128,32 +158,6 @@ const TabStack: React.FC = () => {
         >
           {() => <View />}
         </Tab.Screen>
-        <Tab.Screen
-          name={TabStacks.CredentialStack}
-          component={CredentialStack}
-          options={{
-            tabBarIcon: ({ color, focused }) => (
-              <AttachTourStep index={2}>
-                <View style={{ ...TabTheme.tabBarContainerStyle, justifyContent: showLabels ? 'flex-end' : 'center' }}>
-                  <Icon name={focused ? 'wallet' : 'wallet-outline'} color={color} size={30} />
-                  {showLabels && (
-                    <Text
-                      style={{
-                        ...TabTheme.tabBarTextStyle,
-                        color: focused ? TabTheme.tabBarActiveTintColor : TabTheme.tabBarInactiveTintColor,
-                      }}
-                    >
-                      {t('TabStack.Credentials')}
-                    </Text>
-                  )}
-                </View>
-              </AttachTourStep>
-            ),
-            tabBarShowLabel: false,
-            tabBarAccessibilityLabel: t('TabStack.Credentials'),
-            tabBarTestID: testIdWithKey(t('TabStack.Credentials')),
-          }}
-        />
       </Tab.Navigator>
     </SafeAreaView>
   )

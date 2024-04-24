@@ -8,8 +8,11 @@ import { GenericFn } from '../../types/fn'
 import { CardOverlayType } from '../../types/oca'
 import { Attribute, Predicate } from '../../types/record'
 
+
 import CredentialCard10 from './CredentialCard10'
 import CredentialCard11 from './CredentialCard11'
+
+
 
 interface CredentialCardProps {
   credential?: CredentialExchangeRecord
@@ -35,6 +38,7 @@ const CredentialCard: React.FC<CredentialCardProps> = ({
   onPress = undefined,
 }) => {
   // add ability to reference credential by ID, allows us to get past react hook restrictions
+
   const { OCABundleResolver } = useConfiguration()
   const { ColorPallet } = useTheme()
   const getCredOverlayType = (type: CardOverlayType) => {
@@ -42,7 +46,7 @@ const CredentialCard: React.FC<CredentialCardProps> = ({
       return (
         <CredentialCard11
           displayItems={displayItems}
-          style={{ backgroundColor: ColorPallet.brand.secondaryBackground }}
+          style={{ backgroundColor: ColorPallet.brand.primaryBackground }}
           error={!existsInWallet}
           credName={credName}
           credDefId={credDefId}

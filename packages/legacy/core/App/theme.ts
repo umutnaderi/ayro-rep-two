@@ -82,7 +82,7 @@ export interface IBrandColors {
   modalPrimary: string
   modalSecondary: string
   modalPrimaryBackground: string
-  modalSecondaryBackground: string
+  modalsecondaryBackground: string
   link: string
   text: string
   icon: string
@@ -156,7 +156,7 @@ const GrayscaleColors: IGrayscaleColors = {
   darkGrey: '#313132',
   mediumGrey: '#606060',
   lightGrey: '#D3D3D3',
-  veryLightGrey: '#F2F2F2',
+  veryLightGrey: '#E8EEF4',
   white: '#FFFFFF',
 }
 
@@ -167,18 +167,18 @@ const BrandColors: IBrandColors = {
   secondaryDisabled: `rgba(53, 130, 63, ${heavyOpacity})`,
   primaryLight: `rgba(53, 130, 63, ${lightOpacity})`,
   highlight: '#FCBA19',
-  primaryBackground: '#000000',
-  secondaryBackground: '#313132',
+  primaryBackground: '#F6F5F2',
+  secondaryBackground: '#FFEFEF',
   modalPrimary: '#ac2c03',
   modalSecondary: '#FFFFFFFF',
   modalPrimaryBackground: '#000000',
-  modalSecondaryBackground: '#313132',
+  modalsecondaryBackground: '#313132',
   unorderedList: GrayscaleColors.white,
   unorderedListModal: GrayscaleColors.white,
-  link: GrayscaleColors.white,
-  text: GrayscaleColors.white,
-  icon: GrayscaleColors.white,
-  headerIcon: GrayscaleColors.white,
+  link: GrayscaleColors.darkGrey,
+  text: GrayscaleColors.black,
+  icon: '#74AB0F',
+  headerIcon: GrayscaleColors.darkGrey,
   headerText: GrayscaleColors.white,
   buttonText: GrayscaleColors.white,
   tabBarInactive: GrayscaleColors.white,
@@ -219,8 +219,8 @@ export const ColorPallet: IColorPallet = {
 
 export const TextTheme: ITextTheme = {
   headingOne: {
-    fontSize: 38,
-    fontWeight: 'bold',
+    fontSize: 25,
+    fontWeight: 'normal',
     color: ColorPallet.brand.text,
   },
   headingTwo: {
@@ -524,12 +524,14 @@ export const ListItems = StyleSheet.create({
 
 export const TabTheme = {
   tabBarStyle: {
-    height: 60,
+    height: 75,
+    borderRadius: 10,
     backgroundColor: ColorPallet.brand.secondaryBackground,
-    shadowOffset: { width: 0, height: -3 },
-    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 10, bottom: 10 },
+    elevation: 10,
+    shadowRadius: 7,
     shadowColor: ColorPallet.grayscale.black,
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.9,
     borderTopWidth: 0,
     paddingBottom: 0,
   },
@@ -538,15 +540,15 @@ export const TabTheme = {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  tabBarActiveTintColor: ColorPallet.brand.primary,
-  tabBarInactiveTintColor: ColorPallet.brand.tabBarInactive,
+  tabBarActiveTintColor: ColorPallet.brand.icon,
+  tabBarInactiveTintColor: ColorPallet.grayscale.black,
   tabBarTextStyle: {
     ...TextTheme.label,
     fontWeight: 'normal',
-    paddingBottom: 5,
+    paddingBottom: 18,
   },
   tabBarButtonIconStyle: {
-    color: ColorPallet.brand.headerIcon,
+    color: ColorPallet.grayscale.white,
   },
   focusTabIconStyle: {
     height: 60,
@@ -557,7 +559,7 @@ export const TabTheme = {
     alignItems: 'center',
   },
   focusTabActiveTintColor: {
-    backgroundColor: ColorPallet.brand.secondary,
+    backgroundColor: ColorPallet.brand.primary,
   },
 }
 
@@ -756,8 +758,8 @@ const LoadingTheme = {
 
 const PINInputTheme = {
   cell: {
-    backgroundColor: ColorPallet.brand.secondaryBackground,
-    borderColor: ColorPallet.brand.secondaryBackground,
+    backgroundColor: ColorPallet.grayscale.veryLightGrey,
+    borderColor: ColorPallet.grayscale.lightGrey, 
   },
   focussedCell: {
     borderColor: ColorPallet.brand.headerIcon,

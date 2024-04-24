@@ -142,7 +142,6 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
           onDismissPressed={onDismissPressed}
         />
       )}
-      
       <HomeContentView />
     </ScrollView>
   )

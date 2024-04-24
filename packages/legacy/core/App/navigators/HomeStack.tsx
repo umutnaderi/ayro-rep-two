@@ -23,6 +23,7 @@ const HomeStack: React.FC = () => {
         component={Home}
         options={() => ({
           title: t('Screens.Home'),
+          headerShown: false,
           headerRight: () => null,
           headerLeft: () => <SettingsMenu />,
         })}

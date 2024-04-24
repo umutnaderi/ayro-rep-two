@@ -3,11 +3,11 @@ import { useCredentialByState } from '@aries-framework/react-hooks'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { StyleSheet, View, Text } from 'react-native'
-
 import { useTheme } from '../../contexts/theme'
-import { useNotifications } from '../../hooks/notifications'
+import { ColorPallet } from 'theme'
+import ListCredentials from '../../screens/ListCredentials'
 
-const offset = 25
+const offset = 15
 
 interface HomeContentViewProps {
   children?: any
@@ -18,8 +18,10 @@ const HomeContentView: React.FC<HomeContentViewProps> = ({ children }) => {
     ...useCredentialByState(CredentialState.CredentialReceived),
     ...useCredentialByState(CredentialState.Done),
   ]
-  const notifications = useNotifications()
+
+  const credentialTitle = 'Eklenen Belgelerim'
   const { HomeTheme } = useTheme()
+  const { ColorPallet } = useTheme()
   const { t } = useTranslation()
   const styles = StyleSheet.create({
     container: {
@@ -28,10 +30,11 @@ const HomeContentView: React.FC<HomeContentViewProps> = ({ children }) => {
     },
 
     messageContainer: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginTop: 35,
+      alignItems: 'baseline',
+      justifyContent: "flex-start",
+      marginTop: 30,
       marginHorizontal: offset,
+      width: '90%',
     },
   })
 
@@ -62,11 +65,12 @@ const HomeContentView: React.FC<HomeContentViewProps> = ({ children }) => {
 
     return (
       <>
-        {notifications.total === 0 && (
+        { credentialCount === 0 && (
           <View style={[styles.messageContainer]}>
-            <Text adjustsFontSizeToFit style={[HomeTheme.welcomeHeader, { marginTop: offset, marginBottom: 20 }]}>
+            <Text adjustsFontSizeToFit style={[HomeTheme.welcomeHeader, { marginTop: 10, marginBottom: 25, marginLeft: 0, alignSelf: 'baseline', }]}>
               {t('Home.Welcome')}
             </Text>
+            <View style={{height: 2, width: "100%", backgroundColor: ColorPallet.grayscale.veryLightGrey }} />
           </View>
         )}
         <View style={[styles.messageContainer]}>
@@ -77,9 +81,20 @@ const HomeContentView: React.FC<HomeContentViewProps> = ({ children }) => {
   }
 
   return (
+    
     <View>
-      <View style={styles.container}>{displayMessage(credentials.length)}</View>
-      {children}
+      <View style={[styles.messageContainer]}>
+            <Text adjustsFontSizeToFit style={[HomeTheme.welcomeHeader, { marginTop: 10, marginBottom: 25, marginLeft: 0, alignSelf: 'baseline', }]}>
+              {t('Home.Welcome')}
+            </Text>
+            <View style={{height: 2, width: "100%", backgroundColor: ColorPallet.grayscale.veryLightGrey }} />
+      </View>
+      <View style={[styles.container]}>
+          <Text style={[HomeTheme.credentialMsg, { marginTop: offset, marginBottom: 10, fontWeight: 'bold', textAlign: 'left'}]}>
+            {t('Home.AddedCredentials')}
+          </Text>
+          <ListCredentials/>
+        </View>
     </View>
   )
 }

@@ -3668,6 +3668,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/cli-tools@npm:^13.6.5":
+  version: 13.6.5
+  resolution: "@react-native-community/cli-tools@npm:13.6.5"
+  dependencies:
+    appdirsjs: ^1.2.4
+    chalk: ^4.1.2
+    execa: ^5.0.0
+    find-up: ^5.0.0
+    mime: ^2.4.1
+    node-fetch: ^2.6.0
+    open: ^6.2.0
+    ora: ^5.4.1
+    semver: ^7.5.2
+    shell-quote: ^1.7.3
+    sudo-prompt: ^9.0.0
+  checksum: 776521a156d312d1e7a0485bca6adb26320d18559cba59f42346d18175a083dca7a0beb0738adad75a6379c9668de590b6757817d5d47661e8c764dc9cf21a1c
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-tools@npm:^8.0.4":
   version: 8.0.4
   resolution: "@react-native-community/cli-tools@npm:8.0.4"
@@ -3809,6 +3828,32 @@ __metadata:
   peerDependencies:
     react-native: ">=0.59"
   checksum: 556e47312be4b3d74c4c8fa7ab0b526a9d8395745c4d94d813cd8f08284d2a16ba274d8a8fdc38d5a273c913ebbc356bc15e65a8c8ab4506f7612a08e43da83d
+  languageName: node
+  linkType: hard
+
+"@react-native-vector-icons/common@npm:^0.0.1-alpha.6":
+  version: 0.0.1-alpha.6
+  resolution: "@react-native-vector-icons/common@npm:0.0.1-alpha.6"
+  dependencies:
+    "@react-native-community/cli-tools": ^13.6.5
+    prop-types: ^15.8.1
+    yargs: ^17.7.2
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: ccbaf0536e79f0e6abeb2f8c02c8b28b09dc312558e6d812317a95146caa1d8f440ccb6f954a88d46de0a3027313787d2fa66e844bc439cc7c7c10dc350724a3
+  languageName: node
+  linkType: hard
+
+"@react-native-vector-icons/fontawesome@npm:^4.7.0-alpha.8":
+  version: 4.7.0-alpha.8
+  resolution: "@react-native-vector-icons/fontawesome@npm:4.7.0-alpha.8"
+  dependencies:
+    "@react-native-vector-icons/common": ^0.0.1-alpha.6
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: e748e779e273c43648ce12952678bf46ca297f109a8f22dfefbae593fa2d699c79e262cfaf7905d649097e63115a37b63dcf492d80ab506f8721d7b40a77725f
   languageName: node
   linkType: hard
 
@@ -5294,6 +5339,7 @@ __metadata:
   resolution: "aries-bifold-root@workspace:."
   dependencies:
     "@react-native-community/eslint-config": ^2.0.0
+    "@react-native-vector-icons/fontawesome": ^4.7.0-alpha.8
     "@typescript-eslint/eslint-plugin": ^4.20.0
     "@typescript-eslint/parser": ^4.33.0
     eslint: ^7.14.0
@@ -5303,6 +5349,7 @@ __metadata:
     lerna: ^6.6.1
     npm-run-all: ^4.1.5
     prettier: ^2.8.4
+    react-native-gesture-handler: ^2.16.0
     typescript: 4.4.3
   languageName: unknown
   linkType: soft
@@ -15985,6 +16032,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-gesture-handler@npm:^2.16.0":
+  version: 2.16.0
+  resolution: "react-native-gesture-handler@npm:2.16.0"
+  dependencies:
+    "@egjs/hammerjs": ^2.0.17
+    hoist-non-react-statics: ^3.3.0
+    invariant: ^2.2.4
+    lodash: ^4.17.21
+    prop-types: ^15.7.2
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 44338af64e4bd2ec2ad7e7f417c24258bcca4885dc70935735aa481c3689ca89bf99562c379d0f0ccab1c6e31621ffcdfe170c92c76f0a0860730b892363d0c1
+  languageName: node
+  linkType: hard
+
 "react-native-get-random-values@npm:1.7.0":
   version: 1.7.0
   resolution: "react-native-get-random-values@npm:1.7.0"
@@ -17220,6 +17283,17 @@ __metadata:
   bin:
     semver: ./bin/semver.js
   checksum: 1b26ecf6db9e8292dd90df4e781d91875c0dcc1b1909e70f5d12959a23c7eebb8f01ea581c00783bbee72ceeaad9505797c381756326073850dc36ed284b21b9
+  languageName: node
+  linkType: hard
+
+"semver@npm:^7.5.2":
+  version: 7.6.0
+  resolution: "semver@npm:7.6.0"
+  dependencies:
+    lru-cache: ^6.0.0
+  bin:
+    semver: bin/semver.js
+  checksum: 7427f05b70786c696640edc29fdd4bc33b2acf3bbe1740b955029044f80575fc664e1a512e4113c3af21e767154a94b4aa214bf6cd6e42a1f6dba5914e0b208c
   languageName: node
   linkType: hard
 
@@ -19511,6 +19585,21 @@ __metadata:
     y18n: ^5.0.5
     yargs-parser: ^21.1.1
   checksum: 3d8a43c336a4942bc68080768664aca85c7bd406f018bad362fd255c41c8f4e650277f42fd65d543fce99e084124ddafee7bbfc1a5c6a8fda4cec78609dcf8d4
+  languageName: node
+  linkType: hard
+
+"yargs@npm:^17.7.2":
+  version: 17.7.2
+  resolution: "yargs@npm:17.7.2"
+  dependencies:
+    cliui: ^8.0.1
+    escalade: ^3.1.1
+    get-caller-file: ^2.0.5
+    require-directory: ^2.1.1
+    string-width: ^4.2.3
+    y18n: ^5.0.5
+    yargs-parser: ^21.1.1
+  checksum: 73b572e863aa4a8cbef323dd911d79d193b772defd5a51aab0aca2d446655216f5002c42c5306033968193bdbf892a7a4c110b0d77954a7fdf563e653967b56a
   languageName: node
   linkType: hard
 

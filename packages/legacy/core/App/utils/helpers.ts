@@ -63,15 +63,25 @@ const mulberry32 = (seed: number) => {
 export const hashToRGBA = (hash: number) => {
   let color = '#'
   const colorRangeUpperBound = 256
-
-  // once for r, g, b
   for (let i = 0; i < 3; i++) {
-    // append a pseudorandom two-char hexidecimal value from the lower half of the color spectrum (to limit to darker colors)
-    color += ('0' + Math.floor((mulberry32(hash + i) * colorRangeUpperBound) / 2).toString(16)).slice(-2)
+    let channelValue;
+    if (i === 0) { // Red channel
+      channelValue = Math.min(255, Math.floor((mulberry32(hash + i) * colorRangeUpperBound) / 2)); // Adjust only red
+    } else {
+      channelValue = Math.floor((mulberry32(hash + i) * colorRangeUpperBound) / 2); // Keep green and blue as-is
+    }
+    color += ( '0' + channelValue.toString(16) ).slice(-1)
   }
+  // // once for r, g, b
+  // for (let i = 0; i < 3; i++) {
+  //   // append a pseudorandom two-char hexidecimal value from the lower half of the color spectrum (to limit to darker colors)
+  //   color += ('0' + Math.floor((mulberry32(hash + i) * colorRangeUpperBound) / 2).toString(16)).slice(-2)
+  // }
 
   return color
 }
+
+
 
 export function formatTime(time: Date, params?: { long?: boolean; format?: string }): string {
   const getMonthKey = 'MMMM'
